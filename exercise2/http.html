@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="angular.min.js"></script>
+    <script src="http.js"></script>
+</head>
+<body>
+        <div ng-app="myApp" ng-controller="myCtrl">
+
+                <div class="row">
+                    <ul>
+                        <li ng-class="{active: btnactive = 'Home'}" ng-click="setActive('Home')">Home</li>
+                        <li ng-class="{active: btnactive = 'About'}" ng-click="setActive('About')">About</li>
+                        <li ng-class="{active: btnactive = 'Careers'}" ng-click="setActive('Careers')">Careers</li>
+                        <li ng-class="{active: btnactive = 'Contact'}" ng-click="setActive('Contact')">Contact</li>
+                    </ul>
+
+                    <div class="home" ng-show="btnactive == 'Home'">
+                        <p>home</p>
+                    </div>
+                    <div class="about" ng-show="btnactive == 'Careers'">
+                            <p>About</p>
+                    </div>
+                    <div class="careers" ng-show="btnactive == 'About'">
+                            <p>Careers</p>
+                    </div>
+                    <div class="contact">
+                            <p>Contact</p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Artis Directory</h2>
+                        <div class="form-row mb-2">
+                            <div class="clol">
+                                <label for="searchQuery" class="col-form-label text-right" ng-show="query">
+                                    search: <span>{{query}}</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control form-control-lg" id="searchQuery"
+                                placeholder="Search for an Artists" ng-model="query"
+                                >
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+                            <div class="col">
+                                <select name="" id="" class="form-control form-control-inline" ng-model="orderoption">
+                                    <option value=""></option>
+                                    <option value="id">Id</option>
+                                    <option value="title">Title</option>
+                                    <option value="url">URL</option>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-check form-check-inline">
+                                    <label for="" class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                        name="direction" checked
+                                        ng-model="direction"
+                                        >
+                                        asci
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-check form-check-inline">
+                                    <label for="" class="form-check-label">
+                                        <input type="radio" class="form-check-input"
+                                        name="direction"
+                                        value="reverse"
+                                        ng-model="direction"
+                                        >
+                                        desc
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12">
+                            <ul class="list-group d-flex">
+                                <li class="list-group-item" ng-repeat="data in datas | limitTo:10 | filter: query | orderBy: orderoption : direction ">
+                                    <div class="media d-flex align-items-center">
+                                        <img ng-src="{{data.url}}" alt="" class="rounded-cricle mr-3">
+                                        <div class="media-body">
+                                            <h1>{{data.title}}</h1>
+                                            <h5 class="text-dark">
+                                                {{data.id}}
+                                            </h5>
+                                            <div class="text-secondary">
+                                                {{data.thumbnailUrl}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+</body>
+</html>

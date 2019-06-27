@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercises</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-7">
+                    <div ng-repeat = "movie in movies">
+                            <h1 class="title">{{movie.title}}</h1>
+                            <img class="image w-100" ng-src="{{movie.image}} ">
+                            <p class="description">{{movie.description}}</p>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <form>
+                        <div class="form-group">
+                            <label for="">Movie Title</label>
+                            <input type="title" class="form-control" id="title"  placeholder="Enter title" ng-model="movielist.title" ng-keyup="validateTitle()">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Category</label>
+                            <select name="" id="" class="form-control" ng-model="movielist.category" ng-change="selectCategory()">
+                                <option value=""></option>
+                                <option value="Epic">Epic</option>
+                                <option value="Awesome">Awesome</option>
+                                <option value="Average">Average</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Movie Description</label>
+                            <p>
+                                <textarea name="" id="" cols="30" rows="10" ng-model="movielist.description" ng-blur="checkDescription()"></textarea>
+                            </p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="submitMovie()">Submit Movies</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <button ng-class="{'active': btnActive == 'div1'}" ng-click="setActive('div1')">Div 1</button>
+                <button ng-class="{'active': btnActive == 'div2'}" ng-click="setActive('div2')">Div 1</button>
+                <div class="col-sm12" ng-show="btnActive == 'div1'">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quia consequatur quibusdam ducimus pariatur optio dignissimos nesciunt provident, nihil iure sit nobis incidunt molestias veniam ullam, enim minus similique iste quos eos praesentium perspiciatis libero. Deserunt eaque laudantium fugit amet.
+                    </p>
+                </div>
+
+                <div class="col-sm-12" ng-show="btnActive == 'div2'">
+                    <p>
+                        sfsdfsdfdsfdsfdsfdsfds
+                    </p>
+                </div>
+            </div>
+            <div class="row d-none">
+                <button ng-click="toggleMenu($event)">Toogle button</button>
+
+                <p ng-show = "show">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nemo pariatur ipsum, illum dolores, deserunt doloribus cupiditate ut eveniet, error quia quae accusamus ad soluta adipisci asperiores cum iure odio!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
